@@ -1,6 +1,6 @@
 {
-  "name": "Blank Project",
-  "description": "A blank starter project ready for custom development.",
+  "name": "Photo Album",
+  "description": "A 3x3 photo grid displaying 9 photos with equal dimensions and titles.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
