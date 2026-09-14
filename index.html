@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Photo Album</title>
-    <meta name="description" content="A 3x3 photo grid displaying 9 photos with equal dimensions and titles." />
+    <meta name="description" content="A 3x3 photo grid featuring rows themed around American Football, Video Games, and Boxing." />
     <meta property="og:title" content="Photo Album" />
-    <meta property="og:description" content="A 3x3 photo grid displaying 9 photos with equal dimensions and titles." />
+    <meta property="og:description" content="A 3x3 photo grid featuring rows themed around American Football, Video Games, and Boxing." />
     <style>
       *, *::before, *::after {
         box-sizing: border-box;
@@ -29,7 +29,7 @@
 
       header {
         text-align: center;
-        margin-bottom: 28px;
+        margin-bottom: 32px;
       }
 
       h1 {
@@ -45,7 +45,45 @@
         color: #64748b;
       }
 
-      /* 3 rows, 3 columns grid with equal dimensions */
+      .gallery-rows {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .row-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .row-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #e2e8f0;
+        padding-bottom: 8px;
+      }
+
+      .row-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #1e293b;
+        letter-spacing: -0.01em;
+      }
+
+      .row-tag {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #64748b;
+        background-color: #e2e8f0;
+        padding: 3px 8px;
+        border-radius: 9999px;
+      }
+
+      /* 3-column grid for each row to maintain exact 3x3 layout with equal dimensions */
       .photo-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -67,7 +105,7 @@
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
       }
 
-      /* Aspect ratio 1:1 ensures all photo containers have equal width and height */
+      /* Equal aspect ratio 1:1 for every photo */
       .photo-wrapper {
         position: relative;
         width: 100%;
@@ -107,22 +145,30 @@
         text-overflow: ellipsis;
       }
 
-      /* Responsive adaptation for smaller mobile screens */
+      /* Responsive adjustment */
       @media (max-width: 640px) {
         body {
           padding: 20px 12px;
         }
 
+        .gallery-rows {
+          gap: 24px;
+        }
+
         .photo-grid {
-          gap: 12px;
+          gap: 10px;
         }
 
         .photo-info {
-          padding: 10px 12px;
+          padding: 10px 10px;
         }
 
         .photo-title {
-          font-size: 0.85rem;
+          font-size: 0.82rem;
+        }
+
+        .photo-caption {
+          font-size: 0.72rem;
         }
       }
     </style>
@@ -132,163 +178,190 @@
       <main class="container">
         <header id="header-section">
           <h1>Photo Gallery</h1>
-          <p class="subtitle">A 9-photo showcase arranged in 3 rows and 3 columns</p>
+          <p class="subtitle">3 rows &bull; American Football, Video Games, and Boxing</p>
         </header>
 
-        <section id="photo-grid-section" class="photo-grid" aria-label="Photo Gallery Grid">
-          <!-- Item 1 -->
-          <article id="photo-card-1" class="photo-card">
-            <div class="photo-wrapper">
-              <img
-                src="https://picsum.photos/seed/photo1/600/600"
-                alt="Mountain Sunrise"
-                class="photo-image"
-                loading="lazy"
-                referrerpolicy="no-referrer"
-              />
+        <div class="gallery-rows">
+          <!-- ROW 1: AMERICAN FOOTBALL -->
+          <section id="row-american-football" class="row-section" aria-label="Row 1: American Football">
+            <div class="row-header">
+              <h2 class="row-title">American Football</h2>
+              <span class="row-tag">Row 1</span>
             </div>
-            <div class="photo-info">
-              <h2 class="photo-title">Mountain Sunrise</h2>
-              <span class="photo-caption">Golden morning peak</span>
-            </div>
-          </article>
+            <div class="photo-grid">
+              <!-- American Football 1 -->
+              <article id="photo-football-1" class="photo-card">
+                <div class="photo-wrapper">
+                  <img
+                    src="https://images.unsplash.com/photo-1566577739112-5180d4bf9390?auto=format&fit=crop&w=600&h=600&q=80"
+                    alt="Laced Leather Football on Turf"
+                    class="photo-image"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                  />
+                </div>
+                <div class="photo-info">
+                  <h3 class="photo-title">The Pigskin</h3>
+                  <span class="photo-caption">Laced leather on the gridiron</span>
+                </div>
+              </article>
 
-          <!-- Item 2 -->
-          <article id="photo-card-2" class="photo-card">
-            <div class="photo-wrapper">
-              <img
-                src="https://picsum.photos/seed/photo2/600/600"
-                alt="Coastal Breeze"
-                class="photo-image"
-                loading="lazy"
-                referrerpolicy="no-referrer"
-              />
-            </div>
-            <div class="photo-info">
-              <h2 class="photo-title">Coastal Breeze</h2>
-              <span class="photo-caption">Waves by the shoreline</span>
-            </div>
-          </article>
+              <!-- American Football 2 -->
+              <article id="photo-football-2" class="photo-card">
+                <div class="photo-wrapper">
+                  <img
+                    src="/images/arch-manning.jpg"
+                    alt="Arch Manning"
+                    class="photo-image"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                  />
+                </div>
+                <div class="photo-info">
+                  <h3 class="photo-title">Arch Manning</h3>
+                  <span class="photo-caption">Texas Longhorns quarterback</span>
+                </div>
+              </article>
 
-          <!-- Item 3 -->
-          <article id="photo-card-3" class="photo-card">
-            <div class="photo-wrapper">
-              <img
-                src="https://picsum.photos/seed/photo3/600/600"
-                alt="Autumn Canopy"
-                class="photo-image"
-                loading="lazy"
-                referrerpolicy="no-referrer"
-              />
+              <!-- American Football 3 -->
+              <article id="photo-football-3" class="photo-card">
+                <div class="photo-wrapper">
+                  <img
+                    src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=600&h=600&q=80"
+                    alt="Friday Night Stadium Lights"
+                    class="photo-image"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                  />
+                </div>
+                <div class="photo-info">
+                  <h3 class="photo-title">Friday Night Lights</h3>
+                  <span class="photo-caption">High-energy stadium showdown</span>
+                </div>
+              </article>
             </div>
-            <div class="photo-info">
-              <h2 class="photo-title">Autumn Canopy</h2>
-              <span class="photo-caption">Golden forest trail</span>
-            </div>
-          </article>
+          </section>
 
-          <!-- Item 4 -->
-          <article id="photo-card-4" class="photo-card">
-            <div class="photo-wrapper">
-              <img
-                src="https://picsum.photos/seed/photo4/600/600"
-                alt="Desert Solitude"
-                class="photo-image"
-                loading="lazy"
-                referrerpolicy="no-referrer"
-              />
+          <!-- ROW 2: VIDEO GAMES -->
+          <section id="row-video-games" class="row-section" aria-label="Row 2: Video Games">
+            <div class="row-header">
+              <h2 class="row-title">Video Games</h2>
+              <span class="row-tag">Row 2</span>
             </div>
-            <div class="photo-info">
-              <h2 class="photo-title">Desert Solitude</h2>
-              <span class="photo-caption">Rippled sand dunes</span>
-            </div>
-          </article>
+            <div class="photo-grid">
+              <!-- Video Games 1 -->
+              <article id="photo-gaming-1" class="photo-card">
+                <div class="photo-wrapper">
+                  <img
+                    src="https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?auto=format&fit=crop&w=600&h=600&q=80"
+                    alt="Next-Gen Controller"
+                    class="photo-image"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                  />
+                </div>
+                <div class="photo-info">
+                  <h3 class="photo-title">Next-Gen Gamepad</h3>
+                  <span class="photo-caption">Precision wireless controller</span>
+                </div>
+              </article>
 
-          <!-- Item 5 -->
-          <article id="photo-card-5" class="photo-card">
-            <div class="photo-wrapper">
-              <img
-                src="https://picsum.photos/seed/photo5/600/600"
-                alt="Urban Reflections"
-                class="photo-image"
-                loading="lazy"
-                referrerpolicy="no-referrer"
-              />
-            </div>
-            <div class="photo-info">
-              <h2 class="photo-title">Urban Reflections</h2>
-              <span class="photo-caption">City architecture</span>
-            </div>
-          </article>
+              <!-- Video Games 2 -->
+              <article id="photo-gaming-2" class="photo-card">
+                <div class="photo-wrapper">
+                  <img
+                    src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&h=600&q=80"
+                    alt="Esports Arena Battle"
+                    class="photo-image"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                  />
+                </div>
+                <div class="photo-info">
+                  <h3 class="photo-title">Esports Battle</h3>
+                  <span class="photo-caption">Competitive tournament stage</span>
+                </div>
+              </article>
 
-          <!-- Item 6 -->
-          <article id="photo-card-6" class="photo-card">
-            <div class="photo-wrapper">
-              <img
-                src="https://picsum.photos/seed/photo6/600/600"
-                alt="Alpine Meadow"
-                class="photo-image"
-                loading="lazy"
-                referrerpolicy="no-referrer"
-              />
+              <!-- Video Games 3 -->
+              <article id="photo-gaming-3" class="photo-card">
+                <div class="photo-wrapper">
+                  <img
+                    src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&h=600&q=80"
+                    alt="Retro Arcade Setup"
+                    class="photo-image"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                  />
+                </div>
+                <div class="photo-info">
+                  <h3 class="photo-title">Retro Arcade</h3>
+                  <span class="photo-caption">Classic neon console vibes</span>
+                </div>
+              </article>
             </div>
-            <div class="photo-info">
-              <h2 class="photo-title">Alpine Meadow</h2>
-              <span class="photo-caption">Wildflowers in spring</span>
-            </div>
-          </article>
+          </section>
 
-          <!-- Item 7 -->
-          <article id="photo-card-7" class="photo-card">
-            <div class="photo-wrapper">
-              <img
-                src="https://picsum.photos/seed/photo7/600/600"
-                alt="Misty Woodlands"
-                class="photo-image"
-                loading="lazy"
-                referrerpolicy="no-referrer"
-              />
+          <!-- ROW 3: BOXING -->
+          <section id="row-boxing" class="row-section" aria-label="Row 3: Boxing">
+            <div class="row-header">
+              <h2 class="row-title">Boxing</h2>
+              <span class="row-tag">Row 3</span>
             </div>
-            <div class="photo-info">
-              <h2 class="photo-title">Misty Woodlands</h2>
-              <span class="photo-caption">Pine fog at dawn</span>
-            </div>
-          </article>
+            <div class="photo-grid">
+              <!-- Boxing 1 -->
+              <article id="photo-boxing-1" class="photo-card">
+                <div class="photo-wrapper">
+                  <img
+                    src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=600&h=600&q=80"
+                    alt="Boxing Gloves Ready"
+                    class="photo-image"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                  />
+                </div>
+                <div class="photo-info">
+                  <h3 class="photo-title">Laced Gloves</h3>
+                  <span class="photo-caption">Training session prep</span>
+                </div>
+              </article>
 
-          <!-- Item 8 -->
-          <article id="photo-card-8" class="photo-card">
-            <div class="photo-wrapper">
-              <img
-                src="https://picsum.photos/seed/photo8/600/600"
-                alt="Emerald Cove"
-                class="photo-image"
-                loading="lazy"
-                referrerpolicy="no-referrer"
-              />
-            </div>
-            <div class="photo-info">
-              <h2 class="photo-title">Emerald Cove</h2>
-              <span class="photo-caption">Clear tropical waters</span>
-            </div>
-          </article>
+              <!-- Boxing 2 -->
+              <article id="photo-boxing-2" class="photo-card">
+                <div class="photo-wrapper">
+                  <img
+                    src="https://images.unsplash.com/photo-1517438322307-e67111335449?auto=format&fit=crop&w=600&h=600&q=80"
+                    alt="Heavy Bag Workout"
+                    class="photo-image"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                  />
+                </div>
+                <div class="photo-info">
+                  <h3 class="photo-title">Heavy Bag Drill</h3>
+                  <span class="photo-caption">Power & combination training</span>
+                </div>
+              </article>
 
-          <!-- Item 9 -->
-          <article id="photo-card-9" class="photo-card">
-            <div class="photo-wrapper">
-              <img
-                src="https://picsum.photos/seed/photo9/600/600"
-                alt="Night Sky Panorama"
-                class="photo-image"
-                loading="lazy"
-                referrerpolicy="no-referrer"
-              />
+              <!-- Boxing 3 -->
+              <article id="photo-boxing-3" class="photo-card">
+                <div class="photo-wrapper">
+                  <img
+                    src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&h=600&q=80"
+                    alt="Championship Boxing Ring"
+                    class="photo-image"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                  />
+                </div>
+                <div class="photo-info">
+                  <h3 class="photo-title">The Squared Circle</h3>
+                  <span class="photo-caption">Fight night spotlight</span>
+                </div>
+              </article>
             </div>
-            <div class="photo-info">
-              <h2 class="photo-title">Night Sky Panorama</h2>
-              <span class="photo-caption">Starlit wilderness</span>
-            </div>
-          </article>
-        </section>
+          </section>
+        </div>
       </main>
     </div>
   </body>

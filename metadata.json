@@ -1,6 +1,6 @@
 {
   "name": "Photo Album",
-  "description": "A 3x3 photo grid displaying 9 photos with equal dimensions and titles.",
+  "description": "A 3x3 photo grid featuring rows themed around American Football, Video Games, and Boxing.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
