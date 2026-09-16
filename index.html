@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Photo Album</title>
-    <meta name="description" content="A 3x3 photo grid featuring rows themed around American Football, Video Games, and Boxing." />
+    <meta name="description" content="A 9-photo gallery organized in a 3x3 grid with equal dimensions." />
     <meta property="og:title" content="Photo Album" />
-    <meta property="og:description" content="A 3x3 photo grid featuring rows themed around American Football, Video Games, and Boxing." />
+    <meta property="og:description" content="A 9-photo gallery organized in a 3x3 grid with equal dimensions." />
     <style>
       *, *::before, *::after {
         box-sizing: border-box;
@@ -48,7 +48,7 @@
       .gallery-rows {
         display: flex;
         flex-direction: column;
-        gap: 32px;
+        gap: 24px;
       }
 
       .row-section {
@@ -152,7 +152,7 @@
         }
 
         .gallery-rows {
-          gap: 24px;
+          gap: 20px;
         }
 
         .photo-grid {
@@ -178,19 +178,15 @@
       <main class="container">
         <header id="header-section">
           <h1>Photo Gallery</h1>
-          <p class="subtitle">3 rows &bull; American Football, Video Games, and Boxing</p>
+          <p class="subtitle">3x3 Photo Grid</p>
         </header>
 
         <div class="gallery-rows">
-          <!-- ROW 1: AMERICAN FOOTBALL -->
-          <section id="row-american-football" class="row-section" aria-label="Row 1: American Football">
-            <div class="row-header">
-              <h2 class="row-title">American Football</h2>
-              <span class="row-tag">Row 1</span>
-            </div>
+          <!-- ROW 1 -->
+          <section id="row-1" class="row-section" aria-label="Row 1">
             <div class="photo-grid">
-              <!-- American Football 1 -->
-              <article id="photo-football-1" class="photo-card">
+              <!-- Row 1 Photo 1 -->
+              <article id="photo-row1-1" class="photo-card">
                 <div class="photo-wrapper">
                   <img
                     src="/images/football-1.jpg"
@@ -206,8 +202,8 @@
                 </div>
               </article>
 
-              <!-- American Football 2 -->
-              <article id="photo-football-2" class="photo-card">
+              <!-- Row 1 Photo 2 -->
+              <article id="photo-row1-2" class="photo-card">
                 <div class="photo-wrapper">
                   <img
                     src="/images/arch-manning.jpg"
@@ -223,8 +219,8 @@
                 </div>
               </article>
 
-              <!-- American Football 3 -->
-              <article id="photo-football-3" class="photo-card">
+              <!-- Row 1 Photo 3 -->
+              <article id="photo-row1-3" class="photo-card">
                 <div class="photo-wrapper">
                   <img
                     src="/images/football-3.jpg"
@@ -242,121 +238,113 @@
             </div>
           </section>
 
-          <!-- ROW 2: VIDEO GAMES -->
-          <section id="row-video-games" class="row-section" aria-label="Row 2: Video Games">
-            <div class="row-header">
-              <h2 class="row-title">Video Games</h2>
-              <span class="row-tag">Row 2</span>
-            </div>
+          <!-- ROW 2 -->
+          <section id="row-2" class="row-section" aria-label="Row 2">
             <div class="photo-grid">
-              <!-- Video Games 1 -->
-              <article id="photo-gaming-1" class="photo-card">
+              <!-- Row 2 Photo 1 -->
+              <article id="photo-row2-1" class="photo-card">
                 <div class="photo-wrapper">
                   <img
-                    src="https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?auto=format&fit=crop&w=600&h=600&q=80"
-                    alt="Next-Gen Controller"
+                    src="/images/row2-1.png"
+                    alt="UFL Football"
                     class="photo-image"
                     loading="lazy"
                     referrerpolicy="no-referrer"
                   />
                 </div>
                 <div class="photo-info">
-                  <h3 class="photo-title">Next-Gen Gamepad</h3>
-                  <span class="photo-caption">Precision wireless controller</span>
+                  <h3 class="photo-title">UFL Football</h3>
+                  <span class="photo-caption">Official league feature</span>
                 </div>
               </article>
 
-              <!-- Video Games 2 -->
-              <article id="photo-gaming-2" class="photo-card">
+              <!-- Row 2 Photo 2 -->
+              <article id="photo-row2-2" class="photo-card">
                 <div class="photo-wrapper">
                   <img
-                    src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&h=600&q=80"
-                    alt="Esports Arena Battle"
+                    src="/images/row2-2.jpg"
+                    alt="Football Feature"
                     class="photo-image"
                     loading="lazy"
                     referrerpolicy="no-referrer"
                   />
                 </div>
                 <div class="photo-info">
-                  <h3 class="photo-title">Esports Battle</h3>
-                  <span class="photo-caption">Competitive tournament stage</span>
+                  <h3 class="photo-title">Gameday Spotlight</h3>
+                  <span class="photo-caption">Football feature</span>
                 </div>
               </article>
 
-              <!-- Video Games 3 -->
-              <article id="photo-gaming-3" class="photo-card">
+              <!-- Row 2 Photo 3 -->
+              <article id="photo-row2-3" class="photo-card">
                 <div class="photo-wrapper">
                   <img
-                    src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&h=600&q=80"
-                    alt="Retro Arcade Setup"
+                    src="/images/row2-3.webp"
+                    alt="Game Action"
                     class="photo-image"
                     loading="lazy"
                     referrerpolicy="no-referrer"
                   />
                 </div>
                 <div class="photo-info">
-                  <h3 class="photo-title">Retro Arcade</h3>
-                  <span class="photo-caption">Classic neon console vibes</span>
+                  <h3 class="photo-title">On The Field</h3>
+                  <span class="photo-caption">Football action moment</span>
                 </div>
               </article>
             </div>
           </section>
 
-          <!-- ROW 3: BOXING -->
-          <section id="row-boxing" class="row-section" aria-label="Row 3: Boxing">
-            <div class="row-header">
-              <h2 class="row-title">Boxing</h2>
-              <span class="row-tag">Row 3</span>
-            </div>
+          <!-- ROW 3 -->
+          <section id="row-3" class="row-section" aria-label="Row 3">
             <div class="photo-grid">
-              <!-- Boxing 1 -->
-              <article id="photo-boxing-1" class="photo-card">
+              <!-- Row 3 Photo 1 -->
+              <article id="photo-row3-1" class="photo-card">
                 <div class="photo-wrapper">
                   <img
-                    src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=600&h=600&q=80"
-                    alt="Boxing Gloves Ready"
+                    src="/images/row3-1.jpg"
+                    alt="Football Game Snapshot"
                     class="photo-image"
                     loading="lazy"
                     referrerpolicy="no-referrer"
                   />
                 </div>
                 <div class="photo-info">
-                  <h3 class="photo-title">Laced Gloves</h3>
-                  <span class="photo-caption">Training session prep</span>
+                  <h3 class="photo-title">Game Coverage</h3>
+                  <span class="photo-caption">CBS Sports highlight</span>
                 </div>
               </article>
 
-              <!-- Boxing 2 -->
-              <article id="photo-boxing-2" class="photo-card">
+              <!-- Row 3 Photo 2 -->
+              <article id="photo-row3-2" class="photo-card">
                 <div class="photo-wrapper">
                   <img
-                    src="https://images.unsplash.com/photo-1517438322307-e67111335449?auto=format&fit=crop&w=600&h=600&q=80"
-                    alt="Heavy Bag Workout"
+                    src="/images/row3-2.webp"
+                    alt="Hollywood Smothers OSU"
                     class="photo-image"
                     loading="lazy"
                     referrerpolicy="no-referrer"
                   />
                 </div>
                 <div class="photo-info">
-                  <h3 class="photo-title">Heavy Bag Drill</h3>
-                  <span class="photo-caption">Power & combination training</span>
+                  <h3 class="photo-title">Hollywood Smothers</h3>
+                  <span class="photo-caption">OSU game action</span>
                 </div>
               </article>
 
-              <!-- Boxing 3 -->
-              <article id="photo-boxing-3" class="photo-card">
+              <!-- Row 3 Photo 3 -->
+              <article id="photo-row3-3" class="photo-card">
                 <div class="photo-wrapper">
                   <img
-                    src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&h=600&q=80"
-                    alt="Championship Boxing Ring"
+                    src="/images/row3-3.jpg"
+                    alt="College Football Rivalry"
                     class="photo-image"
                     loading="lazy"
                     referrerpolicy="no-referrer"
                   />
                 </div>
                 <div class="photo-info">
-                  <h3 class="photo-title">The Squared Circle</h3>
-                  <span class="photo-caption">Fight night spotlight</span>
+                  <h3 class="photo-title">Game Day</h3>
+                  <span class="photo-caption">College football showdown</span>
                 </div>
               </article>
             </div>
