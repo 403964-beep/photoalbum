@@ -1,6 +1,6 @@
 {
   "name": "Photo Album",
-  "description": "A 9-photo gallery organized in a 3x3 grid with equal dimensions.",
+  "description": "A 9-photo gallery of football highlights organized in a 3x3 grid with video playback and music.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
