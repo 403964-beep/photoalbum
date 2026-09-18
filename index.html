@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Football Highlights</title>
-    <meta name="description" content="A 9-photo gallery of football highlights organized in a 3x3 grid with video playback." />
+    <meta name="description" content="A 9-photo gallery of football highlights organized in a 3x3 grid with video playback, music, and an animated football stadium background." />
     <meta property="og:title" content="Football Highlights" />
-    <meta property="og:description" content="A 9-photo gallery of football highlights organized in a 3x3 grid with video playback." />
+    <meta property="og:description" content="A 9-photo gallery of football highlights organized in a 3x3 grid with video playback, music, and an animated football stadium background." />
     <!-- Google Fonts: Russo One & Montserrat for bold, athletic sports aesthetic -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -757,6 +757,144 @@
         0% { height: 3px; }
         100% { height: 12px; }
       }
+
+      /* Animated Football Stadium Canvas Layer */
+      #footballAtmosphereCanvas {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* Top Right Football Stadium FX Controls Widget */
+      .stadium-fx-widget {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(15, 23, 42, 0.88);
+        border: 1px solid rgba(134, 239, 172, 0.4);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 9999px;
+        padding: 6px 10px 6px 8px;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.65), 0 0 16px rgba(34, 197, 94, 0.25);
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        user-select: none;
+      }
+
+      .stadium-fx-widget:hover {
+        border-color: #86efac;
+        box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.85), 0 0 22px rgba(34, 197, 94, 0.45);
+      }
+
+      .fx-action-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: linear-gradient(135deg, #15803d 0%, #166534 100%);
+        border: 1px solid #86efac;
+        color: #f8fafc;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 6px 12px;
+        border-radius: 9999px;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(22, 101, 52, 0.5);
+        transition: all 0.15s ease;
+      }
+
+      .fx-action-btn:hover {
+        background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+        transform: scale(1.06);
+        box-shadow: 0 4px 14px rgba(34, 197, 94, 0.65);
+      }
+
+      .fx-action-btn:active {
+        transform: scale(0.95);
+      }
+
+      .fx-theme-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: rgba(30, 41, 59, 0.85);
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        color: #cbd5e1;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 6px 11px;
+        border-radius: 9999px;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        white-space: nowrap;
+      }
+
+      .fx-theme-btn:hover {
+        background: rgba(51, 65, 85, 0.95);
+        color: #fef08a;
+        border-color: #f59e0b;
+      }
+
+      .fx-theme-btn:active {
+        transform: scale(0.96);
+      }
+
+      .fx-spotlight-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(30, 41, 59, 0.85);
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        color: #e2e8f0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        flex-shrink: 0;
+      }
+
+      .fx-spotlight-btn.active {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        border-color: #fef08a;
+        color: #0f172a;
+        box-shadow: 0 0 10px rgba(245, 158, 11, 0.55);
+      }
+
+      .fx-spotlight-btn:hover {
+        transform: scale(1.08);
+      }
+
+      @media (max-width: 640px) {
+        .stadium-fx-widget {
+          top: 10px;
+          right: 10px;
+          padding: 4px 8px 4px 6px;
+          gap: 5px;
+        }
+        .fx-action-btn {
+          font-size: 0.65rem;
+          padding: 5px 8px;
+        }
+        .fx-theme-btn {
+          font-size: 0.62rem;
+          padding: 5px 7px;
+        }
+        .fx-spotlight-btn {
+          width: 28px;
+          height: 28px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -791,6 +929,30 @@
         <div id="bgAudioYoutubeSlot"></div>
       </div>
     </div>
+
+    <!-- Top Right Stadium Atmosphere & Background Controls -->
+    <div id="stadiumFxWidget" class="stadium-fx-widget" role="region" aria-label="Stadium Atmosphere Controls">
+      <button id="fxThrowBallBtn" class="fx-action-btn" type="button" aria-label="Throw a spiraling football pass" title="Throw Spiral Pass">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="12" cy="12" rx="10" ry="6" transform="rotate(-30 12 12)" />
+          <line x1="8" y1="12" x2="16" y2="12" transform="rotate(-30 12 12)" />
+          <line x1="12" y1="9" x2="12" y2="15" transform="rotate(-30 12 12)" />
+        </svg>
+        <span>Throw Pass</span>
+      </button>
+      <button id="fxThemeBtn" class="fx-theme-btn" type="button" aria-label="Switch Stadium Background Theme" title="Switch Theme">
+        <span id="fxThemeIcon">🌙</span>
+        <span id="fxThemeLabel">Night Lights</span>
+      </button>
+      <button id="fxSpotlightToggleBtn" class="fx-spotlight-btn active" type="button" aria-label="Toggle Stadium Floodlights" title="Toggle Stadium Spotlights">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm0 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm-7.071-11.071a1 1 0 0 1 1.414 0l1.414 1.414a1 1 0 1 1-1.414 1.414L4.929 7.343a1 1 0 0 1 0-1.414zm12.728 0a1 1 0 0 1 0 1.414l-1.414 1.414a1 1 0 1 1-1.414-1.414l1.414-1.414a1 1 0 0 1 1.414 0zM2 12a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1zm16 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1zM6.343 17.657a1 1 0 0 1 0 1.414l-1.414 1.414a1 1 0 1 1-1.414-1.414l1.414-1.414a1 1 0 0 1 1.414 0zm12.728 0a1 1 0 0 1 1.414 1.414l-1.414 1.414a1 1 0 0 1-1.414-1.414l1.414-1.414a1 1 0 0 1 0-1.414zM12 18a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1z"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Animated background canvas for stadium lights, turf yardlines, spiraling passes, & sparkles -->
+    <canvas id="footballAtmosphereCanvas" aria-hidden="true"></canvas>
 
     <!-- Animated background with flying footballs and Nike cleats -->
     <div class="bg-flying-decorations" aria-hidden="true">
@@ -1404,6 +1566,729 @@
             setPlayingState(true);
           }
         });
+      })();
+
+      // Interactive Animated Football Background Engine
+      (function() {
+        const canvas = document.getElementById('footballAtmosphereCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        // Background FX Settings & State
+        const themes = [
+          { id: 'night', name: 'Night Lights', icon: '🌙', turf1: '#14532d', turf2: '#166534', beamColor: 'rgba(254, 240, 138, 0.18)', sparkColor: '#f59e0b' },
+          { id: 'championship', name: 'Championship', icon: '🏆', turf1: '#0f3a1f', turf2: '#144a27', beamColor: 'rgba(251, 191, 36, 0.22)', sparkColor: '#fbbf24' },
+          { id: 'electric', name: 'Electric Turf', icon: '⚡', turf1: '#064e3b', turf2: '#047857', beamColor: 'rgba(52, 211, 153, 0.22)', sparkColor: '#22c55e' }
+        ];
+        let currentThemeIndex = 0;
+        let spotlightsActive = true;
+
+        // Mouse pointer for dynamic stadium spotlight
+        const mouse = {
+          x: width / 2,
+          y: height / 2,
+          targetX: width / 2,
+          targetY: height / 2,
+          active: false
+        };
+
+        // Active animated entities
+        const footballs = [];
+        const particles = [];
+        const sparks = [];
+        const flashbulbs = [];
+
+        function resize() {
+          width = window.innerWidth;
+          height = window.innerHeight;
+          dpr = Math.min(window.devicePixelRatio || 1, 2);
+          canvas.width = Math.floor(width * dpr);
+          canvas.height = Math.floor(height * dpr);
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+          ctx.scale(dpr, dpr);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Track cursor for dynamic spotlight illumination
+        window.addEventListener('mousemove', function(e) {
+          mouse.targetX = e.clientX;
+          mouse.targetY = e.clientY;
+          mouse.active = true;
+        });
+
+        window.addEventListener('mouseleave', function() {
+          mouse.active = false;
+        });
+
+        // Initialize ambient stadium particles (dust motes, gold flakes, turf blades)
+        const PARTICLE_COUNT = 45;
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.4 + 0.15,
+            vy: Math.random() * 0.5 + 0.2,
+            size: Math.random() * 3 + 1.2,
+            rotation: Math.random() * Math.PI * 2,
+            rotSpeed: (Math.random() - 0.5) * 0.05,
+            opacity: Math.random() * 0.6 + 0.2,
+            type: Math.random() > 0.45 ? 'gold' : (Math.random() > 0.5 ? 'turf' : 'dust')
+          });
+        }
+
+        // Crowd camera flashes in the upper stadium tier
+        function triggerCrowdFlash() {
+          if (flashbulbs.length < 8 && Math.random() < 0.22) {
+            flashbulbs.push({
+              x: Math.random() * width,
+              y: Math.random() * (height * 0.2),
+              radius: Math.random() * 22 + 10,
+              life: 1.0,
+              decay: Math.random() * 0.07 + 0.05
+            });
+          }
+        }
+
+        // Spawn a realistic 3D spiraling football pass
+        function spawnFootball(opt) {
+          const options = opt || {};
+          const isLeftToRight = options.fromLeft !== undefined ? options.fromLeft : Math.random() > 0.4;
+          
+          let startX, startY, vx, vy, scale, gravity;
+
+          if (options.targetX !== undefined && options.targetY !== undefined) {
+            // Targeted throw towards clicked point
+            const originFromBottom = Math.random() > 0.5;
+            startX = originFromBottom ? (Math.random() * width * 0.6 + width * 0.2) : (isLeftToRight ? -40 : width + 40);
+            startY = originFromBottom ? (height + 40) : (Math.random() * height * 0.5 + 100);
+            
+            const dx = options.targetX - startX;
+            const dy = options.targetY - startY;
+            const dist = Math.hypot(dx, dy) || 1;
+            const speed = Math.min(Math.max(dist * 0.038, 14), 26);
+            
+            vx = (dx / dist) * speed;
+            vy = (dy / dist) * speed - 3.5;
+            gravity = 0.18;
+            scale = Math.random() * 0.25 + 0.9;
+          } else {
+            // Autonomous random stadium pass
+            const passType = Math.floor(Math.random() * 3);
+            if (passType === 0) {
+              // Deep long bomb
+              startX = isLeftToRight ? -50 : width + 50;
+              startY = height * 0.65 + Math.random() * 100;
+              vx = isLeftToRight ? (Math.random() * 4 + 11) : -(Math.random() * 4 + 11);
+              vy = -(Math.random() * 5 + 9);
+              gravity = 0.22;
+              scale = 1.05;
+            } else if (passType === 1) {
+              // Fast laser bullet pass
+              startX = isLeftToRight ? -60 : width + 60;
+              startY = Math.random() * height * 0.5 + 150;
+              vx = isLeftToRight ? (Math.random() * 5 + 16) : -(Math.random() * 5 + 16);
+              vy = (Math.random() - 0.5) * 3;
+              gravity = 0.08;
+              scale = 0.92;
+            } else {
+              // Diagonal Hail Mary arc
+              startX = isLeftToRight ? -40 : width + 40;
+              startY = height * 0.8;
+              vx = isLeftToRight ? (Math.random() * 3 + 9) : -(Math.random() * 3 + 9);
+              vy = -(Math.random() * 4 + 12);
+              gravity = 0.24;
+              scale = 1.15;
+            }
+          }
+
+          footballs.push({
+            x: startX,
+            y: startY,
+            vx: vx,
+            vy: vy,
+            gravity: gravity,
+            scale: scale,
+            angle: Math.atan2(vy, vx),
+            spiralPhase: Math.random() * Math.PI * 2,
+            spiralSpeed: 0.32 + Math.random() * 0.14,
+            tail: [],
+            life: 0,
+            maxLife: 260
+          });
+        }
+
+        // Trigger an explosion of golden sparks and turf grass flecks
+        function createBurst(x, y, count) {
+          const num = count || 25;
+          const theme = themes[currentThemeIndex];
+          for (let i = 0; i < num; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 7 + 2;
+            sparks.push({
+              x: x,
+              y: y,
+              vx: Math.cos(angle) * speed,
+              vy: Math.sin(angle) * speed - 1.5,
+              gravity: 0.22,
+              size: Math.random() * 3.5 + 1.5,
+              life: 1.0,
+              decay: Math.random() * 0.035 + 0.02,
+              color: Math.random() > 0.35 ? theme.sparkColor : '#ffffff',
+              isGrass: Math.random() > 0.65
+            });
+          }
+        }
+
+        // Draw the football field grid: chalk lines, numbers, and yard indicators
+        function drawFieldGrid(time) {
+          ctx.save();
+          const theme = themes[currentThemeIndex];
+
+          // Alternating turf bands (horizontal perspective)
+          const bandHeight = 110;
+          const totalBands = Math.ceil(height / bandHeight) + 1;
+          for (let i = 0; i < totalBands; i++) {
+            const y = i * bandHeight;
+            ctx.fillStyle = i % 2 === 0 ? 'rgba(0, 0, 0, 0.09)' : 'rgba(255, 255, 255, 0.035)';
+            ctx.fillRect(0, y, width, bandHeight);
+          }
+
+          // Subtle stadium center field shield / 50-yard line glow emblem
+          const centerX = width / 2;
+          const centerY = height * 0.48;
+          ctx.save();
+          ctx.globalAlpha = 0.07;
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 3;
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, 90, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, 55, 0, Math.PI * 2);
+          ctx.stroke();
+          // Star emblem in center
+          ctx.fillStyle = '#ffffff';
+          ctx.font = '900 48px "Russo One", sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('50', centerX, centerY);
+          ctx.restore();
+
+          // Field Yardlines with chalk hash marks and yard numbers
+          const yardSpacing = 140;
+          const numLines = Math.ceil(height / yardSpacing) + 2;
+          const pulse = Math.sin(time * 1.5) * 0.03 + 0.16;
+
+          ctx.font = '800 24px "Russo One", "Montserrat", sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+
+          for (let i = 0; i < numLines; i++) {
+            const y = i * yardSpacing;
+
+            // Chalk yard line across the entire field
+            ctx.strokeStyle = `rgba(255, 255, 255, ${pulse})`;
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(width, y);
+            ctx.stroke();
+
+            // Hash marks along inbounds and sidelines (4 corridors across the width)
+            ctx.strokeStyle = `rgba(255, 255, 255, ${pulse * 0.9})`;
+            ctx.lineWidth = 2;
+            const hashOffsets = [0.15, 0.38, 0.62, 0.85];
+            hashOffsets.forEach(ratio => {
+              const hx = width * ratio;
+              for (let dy = -24; dy <= 24; dy += 12) {
+                if (dy !== 0) {
+                  ctx.beginPath();
+                  ctx.moveTo(hx - 5, y + dy);
+                  ctx.lineTo(hx + 5, y + dy);
+                  ctx.stroke();
+                }
+              }
+            });
+
+            // Yard numbers along left & right sides
+            const yardVal = ((i * 10) % 50 === 0 && i !== 0) ? 50 : ((i * 10) % 50);
+            if (yardVal > 0 && y > 60 && y < height - 60) {
+              ctx.fillStyle = `rgba(255, 255, 255, ${pulse * 1.2})`;
+              // Left side marker (arrow points right towards center/50 or goal)
+              const leftText = i < 5 ? `◄ ${yardVal}` : `${yardVal} ►`;
+              ctx.fillText(leftText, 65, y - 18);
+
+              // Right side marker
+              const rightText = i < 5 ? `${yardVal} ►` : `◄ ${yardVal}`;
+              ctx.fillText(rightText, width - 65, y - 18);
+            }
+          }
+
+          ctx.restore();
+        }
+
+        // Draw sweeping volumetric stadium floodlights & light towers
+        function drawStadiumLighting(time) {
+          if (!spotlightsActive) return;
+
+          ctx.save();
+          const theme = themes[currentThemeIndex];
+
+          // Dynamic floodlight positions (Top Left & Top Right pylons)
+          const leftPylon = { x: width * 0.12, y: -15 };
+          const rightPylon = { x: width * 0.88, y: -15 };
+          const centerPylon = { x: width * 0.5, y: -25 };
+
+          // Sweeping searchlight angles (smooth sinusoidal sweeps across turf)
+          const angle1 = 0.95 + Math.sin(time * 0.65) * 0.42;
+          const angle2 = 2.15 + Math.cos(time * 0.55) * 0.42;
+
+          ctx.globalCompositeOperation = 'screen';
+
+          // Helper to draw volumetric sweeping light beam
+          function drawBeam(origin, angle, length, spread, color) {
+            const endX = origin.x + Math.cos(angle) * length;
+            const endY = origin.y + Math.sin(angle) * length;
+            
+            const perpX = Math.cos(angle + Math.PI / 2) * spread;
+            const perpY = Math.sin(angle + Math.PI / 2) * spread;
+
+            const grad = ctx.createRadialGradient(
+              origin.x, origin.y, 10,
+              endX, endY, length * 0.95
+            );
+            grad.addColorStop(0, color);
+            grad.addColorStop(0.35, color.replace(/[\d\.]+\)$/, '0.11)'));
+            grad.addColorStop(0.85, color.replace(/[\d\.]+\)$/, '0.03)'));
+            grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.moveTo(origin.x, origin.y);
+            ctx.lineTo(endX - perpX, endY - perpY);
+            ctx.lineTo(endX + perpX, endY + perpY);
+            ctx.closePath();
+            ctx.fill();
+
+            // Bright spotlight pool on the turf
+            const poolGrad = ctx.createRadialGradient(endX, endY, 5, endX, endY, spread * 0.7);
+            poolGrad.addColorStop(0, color.replace(/[\d\.]+\)$/, '0.25)'));
+            poolGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            ctx.fillStyle = poolGrad;
+            ctx.beginPath();
+            ctx.arc(endX, endY, spread * 0.7, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          // Draw dual sweeping stadium beams
+          const beamLen = Math.hypot(width, height) * 1.15;
+          drawBeam(leftPylon, angle1, beamLen, 170, theme.beamColor);
+          drawBeam(rightPylon, angle2, beamLen, 170, theme.beamColor);
+
+          // Center floodlight glare downwards
+          const centerGrad = ctx.createRadialGradient(centerPylon.x, centerPylon.y, 20, centerPylon.x, height * 0.4, width * 0.65);
+          centerGrad.addColorStop(0, theme.beamColor);
+          centerGrad.addColorStop(1, 'rgba(0,0,0,0)');
+          ctx.fillStyle = centerGrad;
+          ctx.beginPath();
+          ctx.arc(centerPylon.x, centerPylon.y, width * 0.65, 0, Math.PI);
+          ctx.fill();
+
+          // Dynamic spotlight following cursor
+          if (mouse.active) {
+            // Smooth mouse interpolation
+            mouse.x += (mouse.targetX - mouse.x) * 0.12;
+            mouse.y += (mouse.targetY - mouse.y) * 0.12;
+
+            const curGrad = ctx.createRadialGradient(mouse.x, mouse.y, 10, mouse.x, mouse.y, 210);
+            curGrad.addColorStop(0, 'rgba(254, 240, 138, 0.22)');
+            curGrad.addColorStop(0.5, 'rgba(134, 239, 172, 0.08)');
+            curGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            ctx.fillStyle = curGrad;
+            ctx.beginPath();
+            ctx.arc(mouse.x, mouse.y, 210, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          // Stadium floodlight towers heads (LED lamp clusters)
+          [leftPylon, rightPylon, centerPylon].forEach(p => {
+            const glow = ctx.createRadialGradient(p.x, p.y + 15, 2, p.x, p.y + 15, 45);
+            glow.addColorStop(0, '#ffffff');
+            glow.addColorStop(0.3, '#fef08a');
+            glow.addColorStop(1, 'rgba(245, 158, 11, 0)');
+            ctx.fillStyle = glow;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y + 15, 45, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Lamp grid dots
+            ctx.fillStyle = '#ffffff';
+            for (let dx = -14; dx <= 14; dx += 7) {
+              for (let dy = 5; dy <= 20; dy += 7) {
+                ctx.beginPath();
+                ctx.arc(p.x + dx, p.y + dy, 2, 0, Math.PI * 2);
+                ctx.fill();
+              }
+            }
+          });
+
+          ctx.restore();
+        }
+
+        // Draw 3D spiraling football with aerodynamic trajectory and realistic rotating laces
+        function drawFootballs() {
+          const theme = themes[currentThemeIndex];
+
+          for (let i = footballs.length - 1; i >= 0; i--) {
+            const b = footballs[i];
+
+            // Update flight physics
+            b.x += b.vx;
+            b.y += b.vy;
+            b.vy += b.gravity;
+            b.angle = Math.atan2(b.vy, b.vx);
+            b.spiralPhase += b.spiralSpeed;
+            b.life++;
+
+            // Append comet trail particle
+            if (b.life % 2 === 0) {
+              b.tail.push({
+                x: b.x - Math.cos(b.angle) * 20 * b.scale,
+                y: b.y - Math.sin(b.angle) * 20 * b.scale,
+                vx: (Math.random() - 0.5) * 1.5,
+                vy: (Math.random() - 0.5) * 1.5,
+                alpha: 0.85,
+                size: Math.random() * 4 + 2,
+                color: Math.random() > 0.4 ? theme.sparkColor : '#ffffff'
+              });
+            }
+
+            // Draw comet trail
+            ctx.save();
+            ctx.globalCompositeOperation = 'screen';
+            for (let t = b.tail.length - 1; t >= 0; t--) {
+              const tp = b.tail[t];
+              tp.x += tp.vx;
+              tp.y += tp.vy;
+              tp.alpha -= 0.045;
+              tp.size *= 0.95;
+
+              if (tp.alpha <= 0) {
+                b.tail.splice(t, 1);
+                continue;
+              }
+
+              ctx.fillStyle = tp.color;
+              ctx.globalAlpha = tp.alpha;
+              ctx.beginPath();
+              ctx.arc(tp.x, tp.y, tp.size, 0, Math.PI * 2);
+              ctx.fill();
+            }
+            ctx.restore();
+
+            // Remove ball if off-screen or expired
+            if (
+              b.x < -120 || b.x > width + 120 ||
+              b.y > height + 150 || b.life > b.maxLife
+            ) {
+              // Impact burst on landing
+              if (b.y <= height + 80 && b.x > 0 && b.x < width) {
+                createBurst(b.x, Math.min(b.y, height - 20), 18);
+              }
+              footballs.splice(i, 1);
+              continue;
+            }
+
+            // Render 3D Football Body
+            ctx.save();
+            ctx.translate(b.x, b.y);
+            ctx.rotate(b.angle);
+            ctx.scale(b.scale, b.scale);
+
+            // Ground shadow
+            ctx.save();
+            ctx.translate(0, 18);
+            ctx.scale(1, 0.35);
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.35)';
+            ctx.beginPath();
+            ctx.arc(0, 0, 26, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+
+            // Leather body (pointy oblate spheroid)
+            const ballRx = 30;
+            const ballRy = 17;
+            
+            const leatherGrad = ctx.createLinearGradient(0, -ballRy, 0, ballRy);
+            leatherGrad.addColorStop(0, '#92400e');
+            leatherGrad.addColorStop(0.35, '#78350f');
+            leatherGrad.addColorStop(1, '#451a03');
+
+            ctx.fillStyle = leatherGrad;
+            ctx.strokeStyle = '#291104';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.ellipse(0, 0, ballRx, ballRy, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+
+            // Collegiate white side stripes
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 3.2;
+            ctx.lineCap = 'round';
+            // Left stripe
+            ctx.beginPath();
+            ctx.arc(-16, 0, ballRy * 0.85, -Math.PI * 0.45, Math.PI * 0.45);
+            ctx.stroke();
+            // Right stripe
+            ctx.beginPath();
+            ctx.arc(16, 0, ballRy * 0.85, Math.PI * 0.55, Math.PI * 1.45);
+            ctx.stroke();
+
+            // 3D Spiraling White Laces
+            // Modulation based on spiralPhase gives the realistic 3D roll over the ball
+            const laceVisibility = Math.cos(b.spiralPhase);
+            if (laceVisibility > -0.3) {
+              const laceAlpha = Math.max(0, Math.min(1, (laceVisibility + 0.3) / 0.8));
+              const laceY = Math.sin(b.spiralPhase) * (ballRy * 0.65);
+
+              ctx.save();
+              ctx.globalAlpha = laceAlpha;
+              ctx.strokeStyle = '#ffffff';
+              ctx.fillStyle = '#ffffff';
+              ctx.lineWidth = 2.4;
+
+              // Center longitudinal lace spine
+              ctx.beginPath();
+              ctx.moveTo(-11, laceY);
+              ctx.lineTo(11, laceY);
+              ctx.stroke();
+
+              // Cross-stitches
+              const stitchWidth = 4.5 * Math.abs(laceVisibility);
+              for (let lx = -9; lx <= 9; lx += 4.5) {
+                ctx.beginPath();
+                ctx.moveTo(lx, laceY - stitchWidth);
+                ctx.lineTo(lx, laceY + stitchWidth);
+                ctx.stroke();
+              }
+              ctx.restore();
+            }
+
+            ctx.restore();
+          }
+        }
+
+        // Draw interactive sparks, bursts & crowd camera flashbulbs
+        function drawEffects() {
+          // Sparks & turf blades
+          for (let i = sparks.length - 1; i >= 0; i--) {
+            const s = sparks[i];
+            s.x += s.vx;
+            s.y += s.vy;
+            s.vy += s.gravity;
+            s.life -= s.decay;
+
+            if (s.life <= 0) {
+              sparks.splice(i, 1);
+              continue;
+            }
+
+            ctx.save();
+            ctx.globalAlpha = s.life;
+            if (s.isGrass) {
+              // Grass blade fragment
+              ctx.strokeStyle = '#86efac';
+              ctx.lineWidth = 2;
+              ctx.beginPath();
+              ctx.moveTo(s.x, s.y);
+              ctx.lineTo(s.x + s.vx * 1.5, s.y + s.vy * 1.5);
+              ctx.stroke();
+            } else {
+              // Golden glowing spark
+              ctx.fillStyle = s.color;
+              ctx.shadowColor = s.color;
+              ctx.shadowBlur = 8;
+              ctx.beginPath();
+              ctx.arc(s.x, s.y, s.size * s.life, 0, Math.PI * 2);
+              ctx.fill();
+            }
+            ctx.restore();
+          }
+
+          // Crowd flashbulbs
+          for (let i = flashbulbs.length - 1; i >= 0; i--) {
+            const f = flashbulbs[i];
+            f.life -= f.decay;
+            if (f.life <= 0) {
+              flashbulbs.splice(i, 1);
+              continue;
+            }
+
+            ctx.save();
+            ctx.globalCompositeOperation = 'screen';
+            const flashGrad = ctx.createRadialGradient(f.x, f.y, 1, f.x, f.y, f.radius);
+            flashGrad.addColorStop(0, `rgba(255, 255, 255, ${f.life})`);
+            flashGrad.addColorStop(0.4, `rgba(224, 242, 254, ${f.life * 0.5})`);
+            flashGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            ctx.fillStyle = flashGrad;
+            ctx.beginPath();
+            ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          }
+
+          // Drifting ambient stadium particles
+          ctx.save();
+          const theme = themes[currentThemeIndex];
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            p.rotation += p.rotSpeed;
+
+            if (p.x > width + 20) p.x = -20;
+            if (p.x < -20) p.x = width + 20;
+            if (p.y > height + 20) p.y = -20;
+
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rotation);
+            ctx.globalAlpha = p.opacity;
+
+            if (p.type === 'gold') {
+              // Championship gold flake
+              ctx.fillStyle = theme.sparkColor;
+              ctx.fillRect(-p.size, -p.size * 0.6, p.size * 2, p.size * 1.2);
+            } else if (p.type === 'turf') {
+              // Grass fleck
+              ctx.fillStyle = '#4ade80';
+              ctx.beginPath();
+              ctx.ellipse(0, 0, p.size * 1.6, p.size * 0.5, 0, 0, Math.PI * 2);
+              ctx.fill();
+            } else {
+              // Dust mote
+              ctx.fillStyle = '#ffffff';
+              ctx.beginPath();
+              ctx.arc(0, 0, p.size * 0.6, 0, Math.PI * 2);
+              ctx.fill();
+            }
+            ctx.restore();
+          }
+          ctx.restore();
+        }
+
+        // Autonomous pass schedule timer
+        let lastAutoSpawnTime = 0;
+
+        // Main animation loop
+        let lastTime = 0;
+        function animate(timestamp) {
+          const time = timestamp * 0.001;
+          const dt = time - lastTime;
+          lastTime = time;
+
+          // Clear frame
+          ctx.clearRect(0, 0, width, height);
+
+          // Render layers
+          drawFieldGrid(time);
+          drawStadiumLighting(time);
+          drawFootballs();
+          drawEffects();
+
+          // Random crowd camera flashes
+          triggerCrowdFlash();
+
+          // Autonomous periodic passes (every 4.2 seconds)
+          if (time - lastAutoSpawnTime > 4.2 && footballs.length < 3) {
+            spawnFootball();
+            lastAutoSpawnTime = time;
+          }
+
+          requestAnimationFrame(animate);
+        }
+
+        requestAnimationFrame(animate);
+
+        // Initial football launch
+        setTimeout(() => spawnFootball({ fromLeft: true }), 400);
+        setTimeout(() => spawnFootball({ fromLeft: false }), 2200);
+
+        // Interactive Click / Tap: throw a bullet pass or spark burst
+        window.addEventListener('click', function(e) {
+          // If user clicked inside an interactive button, modal, or input, ignore background throw
+          const target = e.target;
+          if (
+            target.closest('button') ||
+            target.closest('a') ||
+            target.closest('.modal-content') ||
+            target.closest('.photo-card') ||
+            target.closest('.stadium-fx-widget') ||
+            target.closest('.music-bar-widget')
+          ) {
+            return;
+          }
+
+          // Launch pass towards click point
+          spawnFootball({
+            targetX: e.clientX,
+            targetY: e.clientY
+          });
+          // Visual turf burst at target
+          createBurst(e.clientX, e.clientY, 28);
+        });
+
+        // Widget Controls Binding
+        const throwBallBtn = document.getElementById('fxThrowBallBtn');
+        const themeBtn = document.getElementById('fxThemeBtn');
+        const themeIcon = document.getElementById('fxThemeIcon');
+        const themeLabel = document.getElementById('fxThemeLabel');
+        const spotlightToggleBtn = document.getElementById('fxSpotlightToggleBtn');
+
+        if (throwBallBtn) {
+          throwBallBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            // Launch epic spiral pass across screen
+            spawnFootball({
+              targetX: width * 0.75,
+              targetY: height * 0.35
+            });
+            createBurst(width * 0.5, height * 0.5, 24);
+          });
+        }
+
+        if (themeBtn) {
+          themeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            const newTheme = themes[currentThemeIndex];
+            themeIcon.textContent = newTheme.icon;
+            themeLabel.textContent = newTheme.name;
+            createBurst(themeBtn.getBoundingClientRect().left, themeBtn.getBoundingClientRect().top, 16);
+          });
+        }
+
+        if (spotlightToggleBtn) {
+          spotlightToggleBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            spotlightsActive = !spotlightsActive;
+            if (spotlightsActive) {
+              spotlightToggleBtn.classList.add('active');
+              spotlightToggleBtn.setAttribute('title', 'Turn Off Spotlights');
+            } else {
+              spotlightToggleBtn.classList.remove('active');
+              spotlightToggleBtn.setAttribute('title', 'Turn On Spotlights');
+            }
+          });
+        }
       })();
     </script>
   </body>
